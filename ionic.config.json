@@ -1,0 +1,7 @@
+{
+  "name": "ion test",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
