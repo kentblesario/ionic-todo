@@ -1,17 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title> Form Sample </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item fill="solid">
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
+        <ion-note slot="helper">Enter a valid First name</ion-note>
+        <ion-note slot="error">Invalid First name</ion-note>
+      </ion-item>
+      <ion-item fill="solid">
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+        <ion-note slot="helper">Enter a valid Last name</ion-note>
+        <ion-note slot="error">Invalid Last name</ion-note>
+      </ion-item>
+      <ion-item fill="solid">
+        <ion-label position="floating">Phone</ion-label>
+        <ion-input type="text" formControlName="phone"></ion-input>
+        <ion-note slot="helper">Enter a valid phone number</ion-note>
+        <ion-note slot="error">Invalid phone number</ion-note>
+      </ion-item>
+    </ion-list>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+    <ion-button type="submit" expand="full">Submit</ion-button>
+  </form>
+  {{registrationForm.value|json}}
 </ion-content>

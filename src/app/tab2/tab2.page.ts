@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,25 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  public registrationForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) {
+    this.buildRegistrationForm();
+   }
+
+  async buildRegistrationForm() {
+    this.registrationForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      address: ['', [Validators.required]]
+    });
+  }
+
+  async onSubmit(){
+    console.log(this.registrationForm);
+  }
 
 }
