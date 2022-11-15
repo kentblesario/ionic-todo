@@ -13,13 +13,8 @@ import { GetTodoService } from '../services/get-todo.service';
 })
 export class Tab1Page {
   public title = 'Todo App';
-  todos: any[] = [
-    { name: 'sometodo', status: 'pending' },
-    { name: 'sometodo1', status: 'pending' },
-    { name: 'sometodo2', status: 'pending' },
-    { name: 'sometodo3', status: 'pending' },
-    { name: 'sometodo4', status: 'pending' }
-  ];
+  public todos: any[] = [];
+
   constructor(
     private modalCtrl: ModalController,
     public getTodoService: GetTodoService,
@@ -40,7 +35,7 @@ export class Tab1Page {
   async getTodoList() {
     this.getTodoService.getTodoList().subscribe(async (res: any) => {
       console.log(res);
-      if (res.data) {
+      if (res) {
         this.todos = res.data;
         console.log(this.todos);
       }
@@ -72,11 +67,11 @@ export class Tab1Page {
     });
   }
 
-  async deleteTodo(todo){
+  async deleteTodo(todo) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Confirm',
-      message: 'Do you want to save this todo?',
+      message: 'Do you want to delete this todo?',
       buttons: [
         {
           text: 'Cancel',
@@ -89,7 +84,7 @@ export class Tab1Page {
         {
           text: 'Okay',
           handler: () => {
-            this.confirmDeleteTodo(todo)
+            this.confirmDeleteTodo(todo);
           },
         },
       ],
@@ -98,7 +93,7 @@ export class Tab1Page {
     await alert.present();
   }
 
-  async confirmDeleteTodo(todo){
+  async confirmDeleteTodo(todo) {
     this.deleteTodoService.deleteTodo(todo).subscribe(async (res: any) => {
       if (res) {
         this.getTodoList();
