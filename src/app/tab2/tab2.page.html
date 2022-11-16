@@ -11,7 +11,7 @@
         <ion-label position="floating">First Name</ion-label>
         <ion-input type="text" formControlName="firstName"></ion-input>
         <ion-note slot="helper">Enter a valid First name</ion-note>
-        <ion-note slot="error">Invalid First name</ion-note>
+        <ion-note slot="error" *ngIf="!registrationForm.controls.firstName.valid && registrationForm.controls.firstName.dirty">Invalid First name</ion-note>
       </ion-item>
       <ion-item fill="solid">
         <ion-label position="floating">Last Name</ion-label>
@@ -25,9 +25,32 @@
         <ion-note slot="helper">Enter a valid phone number</ion-note>
         <ion-note slot="error">Invalid phone number</ion-note>
       </ion-item>
+      <ion-item fill="solid">
+        <ion-label position="floating">Address</ion-label>
+        <ion-textarea type="text" formControlName="address"></ion-textarea>
+        <ion-note slot="helper">Enter a valid address</ion-note>
+        <ion-note slot="error">Invalid address</ion-note>
+      </ion-item>
     </ion-list>
 
     <ion-button type="submit" expand="full">Submit</ion-button>
   </form>
-  {{registrationForm.value|json}}
+  Form Value <br>
+  {{registrationForm.value|json}} <br><br>
+  Control Value <br>
+  Registration Form valid: {{registrationForm.valid|json}} <br><br>
+  First Name is Pristine:{{registrationForm.controls.firstName.pristine|json}} <br>
+  First Name is Dirty:{{registrationForm.controls.firstName.dirty|json}} <br>
+  First Name is Valid:{{registrationForm.controls.firstName.valid|json}} <br>
+  First Name is touched:{{registrationForm.controls.firstName.touched|json}} <br><br>
+
+  Last Name is Pristine:{{registrationForm.controls.lastName.pristine|json}} <br>
+  Last Name is Dirty:{{registrationForm.controls.lastName.dirty|json}} <br>
+  Last Name is Valid:{{registrationForm.controls.lastName.valid|json}} <br>
+  Last Name is touched:{{registrationForm.controls.lastName.touched|json}} <br><br>
+
+  Phone is Pristine:{{registrationForm.controls.phone.pristine|json}} <br>
+  Phone is Dirty:{{registrationForm.controls.phone.dirty|json}} <br>
+  Phone is Valid:{{registrationForm.controls.phone.valid|json}} <br>
+  Phone is touched:{{registrationForm.controls.phone.touched|json}} <br>
 </ion-content>

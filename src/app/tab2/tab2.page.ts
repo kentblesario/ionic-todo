@@ -26,7 +26,7 @@ export class Tab2Page {
   }
 
   async onSubmit(){
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
   }
 
 }
