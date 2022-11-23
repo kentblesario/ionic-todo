@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DeleteTodoService {
-  public con = 'http://192.168.254.105/Todo-List-API';
+  public con = 'http://localhost/Todo-List-API';
   headers = new HttpHeaders();
   constructor(
     private http: HttpClient

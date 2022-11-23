@@ -4,15 +4,24 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CompleteTodoService {
+export class AuthService {
   public con = 'http://localhost/Todo-List-API';
   headers = new HttpHeaders();
   constructor(
     private http: HttpClient
+
   ) { }
-  completeTodo(item, type) {
-    console.log(type,'type');
+
+  authenticate(data) {
     this.headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.put(`${this.con}/update.php`, { id: item.id, sort: item.sort, type });
+    return this.http.post(`${this.con}/auth.php`,{data});
   }
+
+  isJwtValid(data){
+    console.log(data);
+
+    this.headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this.http.post(`${this.con}/checkAuth.php`,{jwt:data});
+  }
+
 }

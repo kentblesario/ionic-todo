@@ -27,6 +27,7 @@ export class Tab2Page {
 
   async onSubmit(){
     console.log(this.registrationForm.value);
+    //http to backend
   }
 
 }

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="registrationForm" (ngSubmit)="registrationForm.valid && onSubmit()">
     <ion-list>
       <ion-item fill="solid">
         <ion-label position="floating">First Name</ion-label>
@@ -27,13 +27,13 @@
       </ion-item>
       <ion-item fill="solid">
         <ion-label position="floating">Address</ion-label>
-        <ion-textarea type="text" formControlName="address"></ion-textarea>
+        <ion-textarea  formControlName="address"></ion-textarea>
         <ion-note slot="helper">Enter a valid address</ion-note>
         <ion-note slot="error">Invalid address</ion-note>
       </ion-item>
     </ion-list>
 
-    <ion-button type="submit" expand="full">Submit</ion-button>
+    <ion-button type="submit" [disabled]="!registrationForm.valid" expand="full">Submit</ion-button>
   </form>
   Form Value <br>
   {{registrationForm.value|json}} <br><br>

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class GetTodoService {
-  public con = 'http://192.168.254.105/Todo-List-API';
+  public con = 'http://localhost/Todo-List-API';
   headers = new HttpHeaders();
   constructor(
     private http: HttpClient

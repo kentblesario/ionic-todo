@@ -1,17 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Sample JWT Authentication
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" *ngIf="!isLoggedIn">
+  <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()">
+    <ion-list>
+      <ion-item fill="solid">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+        <ion-note slot="helper">Enter a valid Email</ion-note>
+        <ion-note slot="error" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">Invalid Email</ion-note>
+      </ion-item>
+      <ion-item fill="solid">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+        <ion-note slot="error" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">Password is required.</ion-note>
+      </ion-item>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    </ion-list>
+
+    <ion-button type="submit" [disabled]="!loginForm.valid" expand="full">Login</ion-button>
+
+    <ion-button style="margin-top:50px" type="submit" status="info" [routerLink]="['/samplepage']" routerLinkActive="router-link-active"  expand="full">Go To Guarded Page</ion-button>
+  </form>
+
+</ion-content>
+
+<ion-content [fullscreen]="true" *ngIf="isLoggedIn">
+
+  <h1 style="text-align: center;">You Are Now Logged In</h1>
+
+  <ion-button type="button"  expand="full" (click)="logout()">Logout</ion-button>
+
+  <ion-button style="margin-top:50px" type="submit" status="info" [routerLink]="['/samplepage']" routerLinkActive="router-link-active"  expand="full">Go To Guarded Page</ion-button>
+
+
 </ion-content>
